@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github.NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
   };
 
-  outputs = { }: let
+  outputs = { nixpkgs, systems, ... }: let
     forAllSystems = function:
     nixpkgs.lib.genAttrs (import systems) (
       system: function nixpkgs.legacyPackages.${system}
